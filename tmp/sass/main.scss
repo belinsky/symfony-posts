@@ -1,0 +1,564 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+$bar: #3E3E37;
+$white: #ffffff;
+$light: #f2f2cb;// #FEFDD3;
+$light_hover: #ccb380;
+$subcolor: #A3B254;
+$subcolor_hover: #747f3c;
+$access_color: #3E3E37;
+$error_color: #ff5959;
+$transition: .5s;
+$font: 'Raleway', sans-serif;
+$border_radius: .2rem;
+$animation: 5s;
+
+@keyframes flash {
+  0% {
+    transform: translateX(calc(100% + 5px));
+  }
+  10% {
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(100% + 5px));
+  }
+}
+@keyframes prompt {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  10% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+html {
+  margin: 0;
+  padding: 0;
+  font-family: $font;
+  body {
+    background-color: $light;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    .bar {
+      width: 100%;
+      padding: .5em;
+      margin: 0;
+      box-sizing: border-box;
+      background-color: $bar;
+      ul.menu{
+        vertical-align: middle;
+        padding: .2rem;
+        margin: 0;
+        li {
+          vertical-align: middle;
+          color: $light;
+          list-style-type: none;
+          display: inline-block;
+          padding: 0 1em;
+          & a {
+            color: $light;
+          }
+
+        }
+      }
+    }
+    img.button[src$=".svg"] {
+      margin: 0;
+      padding: 0;
+      height: .7em;
+      width: .7em;
+    }
+    .prompt {
+      animation: prompt ease .5s 0s 1 normal both running;
+      a {
+        right:0;
+        position: absolute;
+        display: block;
+        text-decoration: none;
+        color: $light_hover;
+        padding: 1rem 3rem;
+        img[src$=".svg"] {
+          display: block;
+          height: 2em;
+          width: 2em;
+          box-sizing: border-box;
+        }
+      }
+      display: none;
+      overflow: hidden;
+      opacity: 0;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      margin: 0, 0;
+      background-color: rgba(0,0,0,.7);
+      transition: all $transition;
+      &:target {
+        display: block;
+        transition: all $transition;
+        overflow: visible;
+        opacity: 1;
+      }
+      form {
+        width: 20em;
+        margin: 10% auto;
+        background-color: $light;
+        span.title {
+          display: block;
+          padding-top: .3rem;
+        }
+      }
+    }
+    form {
+      label {
+        color: $bar;
+        display: block;
+        padding: 1rem;
+      }
+      border-radius: $border_radius;
+      text-align: center;
+      padding: 3em;
+      padding-top: 0;
+      input {
+        border-radius: $border_radius;
+        font-family: $font;
+      }
+      textarea {
+        display: block;
+        width: calc(100% - 3em);
+        outline: none;
+        border: none;
+        margin: .5rem;
+        padding: 1em;
+        font-family: $font;
+        border-bottom: 1px solid $subcolor;
+      }
+    }
+    .content{
+      padding: 2rem;
+      margin: 5rem;
+      margin-top: 0;
+      box-sizing: border-box;
+      & .title {
+        // text-align: center;
+        margin: 0 4rem;
+        h1, & h2, & h3, & h4, & h5, & h6 {
+          color: $bar;
+        }
+      }
+      .posts {
+        .few-item {
+          .post-title, &  .types, & .letter {
+            width: 100%;
+            display: block;
+          }
+          .post-title {
+            background-color: $subcolor;
+            padding: .5rem 1rem;
+            border-radius: $border_radius $border_radius 0 0;
+            display: block;
+            a {
+              text-decoration: none;
+              color: $white;
+              transition: all $transition;
+              font-size: 1.2rem;
+              font-weight: 500;
+              padding: 0 .3rem;
+              &.edit {
+                display: inline-block;
+                height: .8rem;
+                width: .8rem;
+              }
+              &.remove {
+                display: inline-block;
+                height: .8rem;
+                width: .8rem;
+              }
+              &:hover {
+                // color: $light_hover;
+                text-decoration: underline;
+                transition: all $transition;
+              }
+            }
+            .comments {
+              float: right;
+              padding: 0;
+              margin: 0;
+              a {
+                font-size: .9rem;
+              }
+            }
+          }
+          .letter {
+            border-radius:  0 0 $border_radius $border_radius;
+            padding: .5rem 1rem;
+            color: $bar;
+          }
+          .types {
+            padding: .3rem 1rem;
+            color: $light_hover;
+            font-size: .9rem;
+            &:after {
+              content:'';
+              display: block;
+              height: 1px;
+              width: 100%;
+              background-color: $light;
+              margin: .2em;
+            }
+          }
+          .types, & .letter {
+            background-color: $white;
+          }
+          margin: 2rem ;
+        }
+      }
+      .raiting {
+        display: block;
+        float: right;
+        padding-left: 3em;
+        .count {
+          color: $white;
+        }
+      }
+      .navigation {
+        form {
+          label {
+            display: inline-block;
+          }
+          text-align: left;
+          padding: 0;
+        }
+      }
+      .dates {
+        width: 100%;
+        text-align: right;
+        .date {
+          display: block;
+          color: $light_hover;
+          font-size: .8rem;
+          padding: .3rem 0;
+        }
+      }
+      .post {
+        .post-title, &  .types, & .letter {
+          width: 100%;
+          display: block;
+        }
+        .post-title {
+          background-color: $subcolor;
+          padding: 1rem;
+          border-radius: $border_radius $border_radius 0 0;
+          display: block;
+          a, & h3 {
+            text-decoration: none;
+            color: $white;
+            transition: all $transition;
+            font-weight: 500;
+            font-size: 1.5rem;
+            padding: 0 .3rem;
+            margin: 0;
+            display: inline-block;
+            &.edit {
+              display: inline-block;
+              height: .8rem;
+              width: .8rem;
+            }
+            &.remove {
+              display: inline-block;
+              height: .8rem;
+              width: .8rem;
+            }
+            &:hover {
+              // color: $light_hover;
+              transition: all $transition;
+            }
+          }
+          .raiting {
+            display: block;
+            float: right;
+            .count {
+              color: $white;
+            }
+          }
+        }
+        .letter {
+          border-radius:  0 0 $border_radius $border_radius;
+          padding: 1rem;
+        }
+        .types {
+          padding: .3rem 1rem;
+          color: $light_hover;
+          font-size: .9rem;
+          &:after {
+            content:'';
+            display: block;
+            height: 1px;
+            width: 100%;
+            background-color: $light;
+            margin: .2em;
+          }
+        }
+        .types, & .letter {
+          background-color: $white;
+        }
+        margin: 2rem ;
+
+      }
+      .comments {
+        margin: 0 20%;
+        .comment {
+          border-radius: $border_radius;
+          background-color: $white;
+          color: $bar;
+          padding: 1rem 2rem;
+          margin: .5rem;
+          width: 100%;
+          .from {
+            padding-bottom: .5rem;
+            a {
+              color: $subcolor_hover;
+              font-weight: 600;
+              transition: all $transition;
+              &:hover {
+                transition: all $transition;
+                color: $subcolor;
+                text-decoration: underline;
+              }
+            }
+            &:after {
+              content:'';
+              display: block;
+              height: 1px;
+              width: 100%;
+              background-color: $light;
+              margin: .2em;
+            }
+          }
+          .message {
+            display: block;
+            .to {
+              &:before {
+                content:'';
+                display: inline-block;
+                height: 1em;
+                width: 1.5em;
+              }
+              color: $subcolor_hover;
+            }
+          }
+        }
+        .comment.title {
+          background-color: $subcolor;
+          color: $white;
+        }
+        .form.block {
+          padding: 1rem 2rem;
+          margin: .5rem;
+          width: 100%;
+        }
+        .comment-form {
+          width: 100%;
+          display: block;
+          border-radius: $border_radius;
+          text-align: center;
+          background-color: $white;
+          padding: 1rem 5rem;
+          box-sizing: border-box;
+          label {
+            margin: 0;
+            padding: 0;
+            display: inline;
+          }
+          input[type='text'] {
+            display: inline;
+            border-bottom: 1px solid $subcolor;
+          }
+
+          input[type='submit'] {
+            width: 100%;
+            margin-top: .5rem;
+          }
+        }
+      }
+    }
+
+  }
+  input[type='submit'], input[type='button'], a.button {
+    margin: 0;
+    background-color: $subcolor;
+    outline: none;
+    border: none;
+    color: $white;
+    padding: .5rem;
+    border-radius: $border_radius;
+    text-decoration: none;
+    transition: all $transition;
+    font-size: .9rem;
+    &:hover{
+      transition: all $transition;
+      background-color: $subcolor_hover;
+    }
+  }
+  input {
+    margin: 0;
+    padding: .5rem;
+    border-radius: 0;
+    outline: none;
+    border: none;
+  }
+}
+
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: stretch;
+  align-content: center;
+  .block {
+    align-self:	stretch;
+  }
+  .exp-block {
+    align-self:	stretch;
+    width: 100%;
+  }
+}
+
+.vertical-container {
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: center;
+  .block {
+    align-self:	stretch;
+    align-items: baseline;
+  }
+}
+.grow-4 {
+  flex-basis: 100px;
+  flex-grow: 4;
+}
+.grow-6 {
+  flex-basis: 100px;
+  flex-grow: 6;
+}
+.exp-block {
+  flex-basis: 100%;
+}
+.align-center {
+  text-align: center;
+}
+.text {
+  color: $bar;
+  display: block;
+}
+a {
+  text-decoration: none;
+}
+.logo {
+  margin: 0;
+  padding: 0;
+  width: 2em;
+  height: 2em;
+  img {
+    margin: 0;
+    padding: 0;
+  }
+}
+.post-form {
+  text-align: center;
+  background-color: $white;
+  margin: 0 25%;
+  input[type='text'], & input[type='email'] {
+    border-bottom: 1px solid $subcolor;
+    display: inline-block;
+    width: 80%;
+    box-sizing: border-box;
+  }
+  textarea {
+    height: 15em;
+  }
+  label {
+    display: inline-block;
+    width: 19%;
+    box-sizing: border-box;
+  }
+  select {
+    width: calc(100% - 3em);
+    outline: none;
+    border:none;
+    font-family: $font;
+    margin: 2em;
+  }
+  input[type='submit'], & a.button {
+    width: calc(50% - 1.5em);
+    text-align: center;
+    display: inline-block;
+  }
+}
+.paginator {
+    padding: 1rem;
+  a {
+    color: $bar;
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+    padding: 0 .2rem;
+    & img {
+      fill: $subcolor;
+      transition: all $transition;
+      &:hover {
+        fill: $subcolor_hover;
+        opacity: .5;
+        transition: all $transition;
+      }
+    }
+  }
+  a.first {
+    img {
+      transform: rotate(90deg);
+    }
+  }
+  a.prev {
+    img {
+      transform: rotate(-180deg);
+    }
+  }
+  a.last {
+    img {
+      transform: rotate(-90deg);
+    }
+  }
+}
+.flash {
+  color: $white;
+  &.error {
+    background-color: $error_color;
+  }
+  &.notice {
+    background-color: $access_color;
+  }
+  position: fixed;
+  box-sizing: border-box;
+  border-radius: $border_radius;
+  width: 30em;
+  height: 5em;
+  padding: 2em;
+  right: 5px;
+  bottom: 5px;
+  transition: all $transition;
+  animation: flash ease $animation 0s 1 normal forwards running;
+}

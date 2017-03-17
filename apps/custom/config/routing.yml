@@ -1,0 +1,36 @@
+homepage:
+  url:   /
+  param: { module: post, action: index }
+
+api:
+  url:   /list/:module/:sf_format/*
+  param: { action: list }
+  requirements:
+    module: (?:post|type)
+    sf_format: (?:html|json)
+    sf_method: [get]
+
+post_actions:
+  url:   /:action/:module/:token/*
+  requirements:
+    sf_method: (?:post|get)
+    action: (?:create|new|edit|update|remove|inc)
+    module: (?:post|comment)
+
+create_actions:
+  url:   /new/query/
+  params: { module: query, action: new, sf_method: post }
+
+# custom_actions:
+#   url:   /:action/:module/:id/*
+#   requirements:
+#     sf_method: (?:post|get)
+#     action: (?:edit|update|remove)
+#     module: (?:type)
+#     id: \d+
+
+test_actions:
+  url: /test/:action
+  param: { module: test }
+  requirements:
+    sf_format: json

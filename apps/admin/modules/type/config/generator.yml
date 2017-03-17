@@ -1,0 +1,39 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Type
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          type
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        name: { label: Type name }
+        posts_count: { label: Added }
+      list:
+        title: Types management
+        display: [name, posts_count]
+        params: |
+          <b>%%name%%</b> added to %%posts_count%%
+        sort: [name, desc]
+        max_per_page: 10
+        batch_actions:
+          _delete: ~
+        object_actions:
+          _edit: ~
+          _delete: ~
+        actions:
+      filter:
+        display: [name]
+      form:
+        class: TypeForm
+      edit:
+        title: Editing type
+      new:
+        title: Type Creation

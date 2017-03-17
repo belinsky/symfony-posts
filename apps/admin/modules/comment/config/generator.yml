@@ -1,0 +1,44 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Comment
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          comment
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        author_email: { label: Author email }
+        dest_email: { label: Recipient email }
+      list:
+        title: Comments management
+        display: [author_email, dest_email, comment, created]
+        params: |
+          <b>%%author_email%% meseged %%dest_email%%</b>:
+          %%comment%%.
+          At %%created%%.
+        sort: [created, desc]
+        max_per_page: 5
+        batch_actions:
+          _delete: ~
+        object_actions:
+          _edit: ~
+          _delete: ~
+        actions:
+      filter:
+        display: [author_email, dest_email, created]
+      form:
+        display:
+          Addresses: [author_email,dest_email]
+          Comment: [comment]
+        class: CommentForm
+      edit:
+        title: Editing comment
+      new:
+        title: Comment creation

@@ -1,0 +1,81 @@
+# # Populate this file with data to be loaded by your ORM's *:data-load task.
+# # You can create multiple files in this directory (i.e. 010_users.yml,
+# # 020_articles.yml, etc) which will be loaded in alphabetical order.
+# #
+# # See documentation for your ORM's *:data-load task for more information.
+#
+# User:
+#   fabien:
+#     username: fabien
+#     password: changeme
+#     name:     Fabien Potencier
+#     email:    fabien.potencier@symfony-project.com
+#   kris:
+#     username: Kris.Wallsmith
+#     password: changeme
+#     name:     Kris Wallsmith
+#     email:    kris.wallsmith@symfony-project.com
+
+Query:
+  one:
+    token: 2di5NrZ9fT
+    email: asd@asd.asd
+  one1:
+    token: KTsDsHDtSY
+    email: lo@lo.lo
+
+Post:
+  two:
+    query_token: 2di5NrZ9fT
+    theme: life is good
+    letter: laying on a sand and dreaming about skies.
+  two1:
+    query_token: KTsDsHDtSY
+    theme: reinstall windows
+    letter: im trying to reinstall os, but nothing works out. help pls
+
+Type:
+  work:
+    name: work
+  sad:
+    name: holidays
+  pr:
+    name: programming
+  fun:
+    name: fun
+
+PostType:
+  one0:
+    post_id: 1
+    type_id: 3
+  one1:
+    post_id: 1
+    type_id: 4
+  one2:
+    post_id: 2
+    type_id: 1
+  one3:
+    post_id: 2
+    type_id: 2
+
+Comment:
+  one1:
+    post_id: 1
+    author_email: asd@asd.asd
+    dest_email: null
+    comment: i envy u
+  one2:
+    post_id: 1
+    author_email: qwe@qwe.qwe
+    dest_email: asd@asd.asd
+    comment: huh, thanks
+  one3:
+    post_id: 2
+    author_email: qwe@qwe.qwe
+    dest_email: null
+    comment: sorry, cant help
+  one4:
+    post_id: 2
+    author_email: asd@asd.asd
+    dest_email: qwe@qwe.qwe
+    comment: dont worry

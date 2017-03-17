@@ -1,0 +1,39 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Query
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          query
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      list:
+        title: Queries management
+        display: [token, status, email, created]
+        params: |
+          <b>%%email%%</b> may post in %%token%% at %%created%%
+        sort: [created, desc]
+        max_per_page: 5
+        batch_actions:
+          _delete: ~
+          activate: ~
+          deactivate: ~
+        object_actions:
+          _edit: ~
+          _delete: ~
+        actions:
+          removeDeactivated: { label: Remove deactivated queries }
+      filter:
+        display: [token, status, email]
+      form:
+        class: QueryForm
+      edit:
+        title: Editing Query
+      new:
+        title: Query Creation

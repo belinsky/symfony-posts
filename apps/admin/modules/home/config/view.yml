@@ -1,0 +1,18 @@
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    title:        Apmin homepage
+    description:  admins
+
+  stylesheets:    []
+
+  javascripts:    []
+
+  has_layout:     true
+  layout:         layout
+
+indexSuccess:
+  metas:
+    title: Admin actions:

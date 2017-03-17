@@ -1,0 +1,68 @@
+Query:
+  actAs:
+    Timestampable:
+      created:
+        name: created
+      updated:
+        disabled: true
+  columns:
+    token: { type: string(255), primary: true }
+    email: { type: string(255), notnull: true, unique: false }
+    status: { type: boolean, default: false }
+
+Post:
+  actAs:
+    Timestampable:
+      created:
+        name: created
+      updated:
+        name: updated
+  columns:
+    query_token: { type: string(255), unique: true, notnull: true }
+    theme: { type: string(255) }
+    letter: { type: string(4000) }
+    raiting: { type: integer(11), default: 0 }
+  relations:
+    Query:
+      local: query_token
+      foreign: token
+      onDelete: CASCADE
+      onUpdate: CASCADE
+      foreignType: one
+      type: one
+    Type:
+      class: Type
+      local: post_id
+      foreign: type_id
+      refClass: PostType
+      foreignAlias: PostTypeAlias
+      onDelete: CASCADE
+      onUpdate: CASCADE
+
+Comment:
+  actAs:
+    Timestampable:
+      created:
+        name: created
+      updated:
+        name: updated
+  columns:
+    post_id: { type: integer }
+    author_email: { type: string(255), notnull: false, default: null }
+    dest_email: { type: string(255), notnull: false, default: null }
+    comment: { type: string(500) }
+  relations:
+    Post:
+      local: post_id
+      foreign: id
+      onDelete: CASCADE
+      onUpdate: CASCADE
+
+Type:
+  columns:
+    name: { type: string(255), unique: true, notnull: true }
+
+PostType:
+  columns:
+    post_id: { type: integer, primary: true }
+    type_id: { type: integer, primary: true }

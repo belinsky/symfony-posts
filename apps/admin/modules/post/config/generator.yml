@@ -1,0 +1,45 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Post
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          post
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        query_token: { label: Token, help: Access token for creating the post }
+      list:
+        title: Posts management
+        display: [query_token, theme, letter, types, updated, created]
+        params: |
+          (%%query_token%%) <b>%%theme%%</b> with %%types%%, at %%created%%.
+        sort: [created, desc]
+        max_per_page: 3
+        batch_actions:
+          # in module actions
+          _delete: ~
+        object_actions:
+          _edit: ~
+          _delete: ~
+        actions:
+          removeDeactivated: { label: Remove deactivated }
+        # table_method: retrieveAdminPostList #ModelTable method чтобы снизить число запросов к бд
+      filter:
+        #class: false - удалить фильтры для этого модуля
+        display: [type_list, created, updated, raiting]
+      form:
+        display:
+          User: [theme, letter, type_list]
+          Admin: [query_token, created, updated, raiting]
+        class: AdminPostForm
+      edit:
+        title: Editing post %%query_token%%
+      new:
+        title: Post creation
